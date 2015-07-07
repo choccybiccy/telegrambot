@@ -1,0 +1,24 @@
+{
+    "name": "choccybiccy/telegrambot",
+    "description": "Library for building telegram bots",
+    "type": "Library",
+    "require": {
+
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^4.7"
+    },
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Martin Hughes",
+            "email": "martinph01@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "autoload": {
+        "psr-4": {
+            "Choccybiccy\\": ["src/", "tests/"]
+        }
+    }
+}
