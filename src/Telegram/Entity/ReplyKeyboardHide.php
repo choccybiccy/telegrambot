@@ -2,10 +2,12 @@
 
 namespace Choccybiccy\Telegram\Entity;
 
+use Choccybiccy\Telegram\Entity;
+
 /**
  * Class ReplyKeyboardHide
  * @package Choccybiccy\Telegram\Entity
  */
-class ReplyKeyboardHide
+class ReplyKeyboardHide extends Entity
 {
 }

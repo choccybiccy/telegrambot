@@ -3,9 +3,24 @@
 namespace Choccybiccy\Telegram\Entity;
 
 /**
- * Class GroupChat
+ * Class Document
  * @package Choccybiccy\Telegram\Entity
  */
-class GroupChat
+class Document extends Entity
 {
+
+    /**
+     * @param string $key
+     * @param mixed $value
+     * @return mixed
+     */
+    public function mapToEntity($key, $value)
+    {
+        switch($key)
+        {
+            case "thumb":
+                return new PhotoSize($value);
+                break;
+        }
+    }
 }

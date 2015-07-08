@@ -6,6 +6,6 @@ namespace Choccybiccy\Telegram\Entity;
  * Class Sticker
  * @package Choccybiccy\Telegram\Entity
  */
-class Sticker
+class Sticker extends Document
 {
 }
