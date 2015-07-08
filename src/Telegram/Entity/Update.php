@@ -14,12 +14,11 @@ class Update extends Entity
     /**
      * @param string $key
      * @param mixed $value
-     * @return mixed
+     * @return Message|void
      */
     public function mapToEntity($key, $value)
     {
-        switch($key)
-        {
+        switch ($key) {
             case "message":
                 return new Message($value);
                 break;

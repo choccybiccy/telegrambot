@@ -60,6 +60,16 @@ abstract class Command
     }
 
     /**
+     * Get trigger
+     *
+     * @return string
+     */
+    public function getTrigger()
+    {
+        return $this->trigger;
+    }
+
+    /**
      * Validate a trigger contains only a word, underscore or hyphen character
      *
      * @param $trigger

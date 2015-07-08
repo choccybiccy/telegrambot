@@ -103,6 +103,7 @@ class Entity
      *
      * @param string $key
      * @param mixed $value
+     * @return void
      */
     public function mapToEntity($key, $value)
     {

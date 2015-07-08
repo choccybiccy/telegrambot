@@ -14,7 +14,7 @@ class Message extends Entity
     /**
      * @param string $key
      * @param mixed $value
-     * @return mixed
+     * @return Entity|Entity[]|void
      */
     public function mapToEntity($key, $value)
     {

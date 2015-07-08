@@ -2,6 +2,8 @@
 
 namespace Choccybiccy\Telegram\Entity;
 
+use Choccybiccy\Telegram\Entity;
+
 /**
  * Class Document
  * @package Choccybiccy\Telegram\Entity
@@ -12,7 +14,7 @@ class Document extends Entity
     /**
      * @param string $key
      * @param mixed $value
-     * @return mixed
+     * @return PhotoSize|void
      */
     public function mapToEntity($key, $value)
     {

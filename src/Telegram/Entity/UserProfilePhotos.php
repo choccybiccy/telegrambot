@@ -14,7 +14,7 @@ class UserProfilePhotos extends Entity
     /**
      * @param string $key
      * @param mixed $value
-     * @return mixed
+     * @return PhotoSize[]|void
      */
     public function mapToEntity($key, $value)
     {

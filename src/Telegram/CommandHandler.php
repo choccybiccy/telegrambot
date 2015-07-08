@@ -44,13 +44,22 @@ class CommandHandler
     }
 
     /**
-     * @param Request $request
+     * @param Update $update
      */
-    public function handleUpdate(Request $request)
+    public function run(Update $update)
     {
 
-        $json = new ParameterBag((array) json_decode($request->getContent(), true));
-        $update = new Update($json->all());
+        /** @var Entity\Message $message */
+        $message = $update->message;
+        $text = $message->text;
+
+        if(substr($text, 0, 1) == "/") {
+            foreach($this->commands as $command) {
+                if(preg_match('/^\/' . $command->getTrigger() . ' (.*)\$/', $text, $matches)) {
+                    $command->run($matches[1], $message, $this->apiClient);
+                }
+            }
+        }
 
     }
 }
