@@ -1,7 +1,7 @@
 # Telegram Bot API
 [![Build Status](https://travis-ci.org/choccybiccy/telegrambot.svg?branch=master)](https://travis-ci.org/choccybiccy/telegrambot) 
 [![Latest Stable Version](https://poser.pugx.org/choccybiccy/telegrambot/v/stable.svg)](https://packagist.org/packages/choccybiccy/telegrambot) 
-[![Latest Unstable Version](https://poser.pugx.org/phpunit/phpunit/v/unstable)](//packagist.org/packages/phpunit/phpunit)
+[![Latest Unstable Version](https://poser.pugx.org/choccybiccy/telegrambot/v/unstable)](//packagist.org/packages/choccybiccy/telegrambot)
 [![License](https://poser.pugx.org/choccybiccy/telegrambot/license.svg)](https://packagist.org/packages/choccybiccy/telegrambot)
 
 Build better Telegram bots.
