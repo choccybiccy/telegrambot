@@ -8,3 +8,4 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 * `Command` to write bot commands
 * `CommandHandler` to manage bot commands
 * `Entity` to model the Bot API types
+* Unit tests
