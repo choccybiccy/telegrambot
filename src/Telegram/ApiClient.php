@@ -14,7 +14,6 @@ use Choccybiccy\Telegram\Entity\Update;
 use Choccybiccy\Telegram\Entity\User;
 use Choccybiccy\Telegram\Entity\UserProfilePhotos;
 use Choccybiccy\Telegram\Exception\BadResponseException;
-use Symfony\Component\HttpFoundation\ParameterBag;
 
 /**
  * Class ApiClient
@@ -330,7 +329,7 @@ class ApiClient extends Client
      */
     public function entityFromBody($body, $entity)
     {
-        $json = new ParameterBag($this->decodeJson($body));
-        return $entity->populate($json->all());
+        $json = $this->decodeJson($body);
+        return $entity->populate($json);
     }
 }

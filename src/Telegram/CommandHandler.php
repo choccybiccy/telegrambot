@@ -3,8 +3,6 @@
 namespace Choccybiccy\Telegram;
 
 use Choccybiccy\Telegram\Entity\Update;
-use Symfony\Component\HttpFoundation\ParameterBag;
-use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class CommandHandler
