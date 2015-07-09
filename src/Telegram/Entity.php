@@ -19,9 +19,21 @@ class Entity
      */
     public function __construct(array $data = [])
     {
+        $this->populate($data);
+    }
+
+    /**
+     * @param array $data
+     * @param bool|false $replace
+     * @return $this
+     */
+    public function populate(array $data, $replace = false)
+    {
+        if($replace) $this->data = [];
         foreach($data as $key => $value) {
             $this->set($key, $value);
         }
+        return $this;
     }
 
     /**

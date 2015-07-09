@@ -36,7 +36,7 @@ class CommandHandler
     /**
      * Register a command
      *
-     * @param $command
+     * @param Command $command
      */
     public function register(Command $command)
     {
