@@ -18,7 +18,12 @@
     "minimum-stability": "stable",
     "autoload": {
         "psr-4": {
-            "Choccybiccy\\": ["src/", "tests/"]
+            "Choccybiccy\\": ["src/"]
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Choccybiccy\\": ["tests/"]
         }
     }
 }

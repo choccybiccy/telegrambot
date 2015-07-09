@@ -25,6 +25,7 @@ class UserProfilePhotos extends Entity
                 foreach($value as $photoSize) {
                     $return[] = new PhotoSize($photoSize);
                 }
+                return $return;
                 break;
         }
     }

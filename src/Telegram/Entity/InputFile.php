@@ -19,7 +19,25 @@ class InputFile
      */
     public function __construct($fileContents)
     {
-        $this->fileContents($fileContents);
+        $this->setFileContents($fileContents);
+    }
+
+    /**
+     * @return string
+     */
+    public function getFileContents()
+    {
+        return $this->fileContents;
+    }
+
+    /**
+     * @param $fileContents
+     * @return $this
+     */
+    public function setFileContents($fileContents)
+    {
+        $this->fileContents = $fileContents;
+        return $this;
     }
 
     /**
