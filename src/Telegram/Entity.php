@@ -33,8 +33,8 @@ class Entity
     {
         $this->data[$key] = $value;
         $entity = $this->mapToEntity($key, $value);
-        if($entity instanceof Entity) {
-            $this->data[$key] = $value;
+        if(is_object($entity)) {
+            $this->data[$key] = $entity;
         }
         return $this;
     }
@@ -92,6 +92,8 @@ class Entity
         foreach($this->data as $key => $value) {
             if($value instanceof Entity) {
                 $value = $value->toArray();
+            } elseif($value instanceof \DateTime) {
+                $value = $value->getTimestamp();
             }
             $array[$key] = $value;
         }

@@ -20,6 +20,9 @@ class Message extends Entity
     {
         switch($key)
         {
+            case "date":
+                return new \DateTime(date("Y-m-d H:i:s", $value));
+                break;
             case "from":
             case "forward_from":
             case "new_chat_participant":

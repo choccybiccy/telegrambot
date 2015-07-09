@@ -55,8 +55,8 @@ class CommandHandler
 
         if(substr($text, 0, 1) == "/") {
             foreach($this->commands as $command) {
-                if(preg_match('/^\/' . $command->getTrigger() . ' (.*)\$/', $text, $matches)) {
-                    $command->run($matches[1], $message, $this->apiClient);
+                if(preg_match('/^\/' . $command->getTrigger() . '\s?(.*)$/', $text, $matches)) {
+                    $command->run(trim($matches[1]), $message, $this->apiClient);
                 }
             }
         }

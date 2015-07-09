@@ -77,7 +77,7 @@ abstract class Command
      */
     private function validateTrigger($trigger)
     {
-        if(!preg_match('/^[\w-]$/', $trigger)) {
+        if(!preg_match('/^[\w\-]+$/', $trigger)) {
             throw new \InvalidArgumentException("Command trigger \"" . $trigger . "\" is invalid");
         }
     }

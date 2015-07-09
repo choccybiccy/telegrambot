@@ -13,6 +13,7 @@ use Choccybiccy\Telegram\Entity\Response;
 use Choccybiccy\Telegram\Entity\Update;
 use Choccybiccy\Telegram\Entity\User;
 use Choccybiccy\Telegram\Entity\UserProfilePhotos;
+use Choccybiccy\Telegram\Exception\BadResponseException;
 use Symfony\Component\HttpFoundation\ParameterBag;
 
 /**
@@ -59,7 +60,7 @@ class ApiClient extends Client
     public function getMe()
     {
         $response = $this->apiRequest("getMe");
-        return $this->entityFromBody($response->getBody(), "Entity\\User");
+        return $this->entityFromBody($response->getBody(), "\\Choccybiccy\\Telegram\\Entity\\User");
     }
 
     /**
@@ -79,9 +80,9 @@ class ApiClient extends Client
             "text" => $text,
             "disable_web_page_preview" => $disableWebPagePreview,
             "reply_to_message_id" => $replyToMessageId,
-            "reply_markup" => $replyMarkup->toArray(),
+            "reply_markup" => $replyMarkup ? $replyMarkup->toArray() : null,
         ]);
-        return $this->entityFromBody($response->getBody(), "Entity\\Message");
+        return $this->entityFromBody($response->getBody(), "\\Choccybiccy\\Telegram\\Entity\\Message");
     }
 
     /**
@@ -97,7 +98,7 @@ class ApiClient extends Client
             "from_chat_id" => $fromChatId,
             "message_id" => $messageId,
         ]);
-        return $this->entityFromBody($response->getBody(), "Entity\\Message");
+        return $this->entityFromBody($response->getBody(), "\\Choccybiccy\\Telegram\\Entity\\Message");
     }
 
     /**
@@ -115,9 +116,9 @@ class ApiClient extends Client
             "photo" => (string) $photo,
             "caption" => $caption,
             "reply_to_message_id" => $replyToMessageId,
-            "reply_markup" => $replyMarkup->toArray()
+            "reply_markup" => $replyMarkup ? $replyMarkup->toArray() : null,
         ]);
-        return $this->entityFromBody($response->getBody(), "Entity\\Message");
+        return $this->entityFromBody($response->getBody(), "\\Choccybiccy\\Telegram\\Entity\\Message");
     }
 
     /**
@@ -133,9 +134,9 @@ class ApiClient extends Client
             "chat_id" => $chatId,
             "audio" => (string) $audio,
             "reply_to_message_id" => $replyToMessageId,
-            "reply_markup" => $replyMarkup->toArray()
+            "reply_markup" => $replyMarkup ? $replyMarkup->toArray() : null,
         ]);
-        return $this->entityFromBody($response->getBody(), "Entity\\Message");
+        return $this->entityFromBody($response->getBody(), "\\Choccybiccy\\Telegram\\Entity\\Message");
     }
 
     /**
@@ -151,9 +152,9 @@ class ApiClient extends Client
             "chat_id" => $chatId,
             "document" => (string) $document,
             "reply_to_message_id" => $replyToMessageId,
-            "reply_markup" => $replyMarkup->toArray()
+            "reply_markup" => $replyMarkup ? $replyMarkup->toArray() : null,
         ]);
-        return $this->entityFromBody($response->getBody(), "Entity\\Message");
+        return $this->entityFromBody($response->getBody(), "\\Choccybiccy\\Telegram\\Entity\\Message");
     }
 
     /**
@@ -169,9 +170,9 @@ class ApiClient extends Client
             "chat_id" => $chatId,
             "sticker" => (string) $sticker,
             "reply_to_message_id" => $replyToMessageId,
-            "reply_markup" => $replyMarkup->toArray()
+            "reply_markup" => $replyMarkup ? $replyMarkup->toArray() : null,
         ]);
-        return $this->entityFromBody($response->getBody(), "Entity\\Message");
+        return $this->entityFromBody($response->getBody(), "\\Choccybiccy\\Telegram\\Entity\\Message");
     }
 
     /**
@@ -187,9 +188,9 @@ class ApiClient extends Client
             "chat_id" => $chatId,
             "video" => (string) $video,
             "reply_to_message_id" => $replyToMessageId,
-            "reply_markup" => $replyMarkup->toArray()
+            "reply_markup" => $replyMarkup ? $replyMarkup->toArray() : null,
         ]);
-        return $this->entityFromBody($response->getBody(), "Entity\\Message");
+        return $this->entityFromBody($response->getBody(), "\\Choccybiccy\\Telegram\\Entity\\Message");
     }
 
     /**
@@ -207,9 +208,9 @@ class ApiClient extends Client
             "latitude" => $latitude,
             "longitude" => $longitude,
             "reply_to_message_id" => $replyToMessageId,
-            "reply_markup" => $replyMarkup->toArray(),
+            "reply_markup" => $replyMarkup ? $replyMarkup->toArray() : null,
         ]);
-        return $this->entityFromBody($response->getBody(), "Entity\\Message");
+        return $this->entityFromBody($response->getBody(), "\\Choccybiccy\\Telegram\\Entity\\Message");
     }
 
     /**
@@ -223,7 +224,7 @@ class ApiClient extends Client
             "chat_id" => $chatId,
             "action" => $action,
         ]);
-        return $this->entityFromBody($response->getBody(), "Entity\\Response");
+        return $this->entityFromBody($response->getBody(), "\\Choccybiccy\\Telegram\\Entity\\Response");
     }
 
     /**
@@ -239,7 +240,7 @@ class ApiClient extends Client
             "offset" => $offset,
             "limit" => $limit,
         ]);
-        return $this->entityFromBody($response->getBody(), "Entity\\UserProfilePhotos");
+        return $this->entityFromBody($response->getBody(), "\\Choccybiccy\\Telegram\\Entity\\UserProfilePhotos");
     }
 
     /**
@@ -270,18 +271,27 @@ class ApiClient extends Client
     public function setWebhook($url)
     {
         $response = $this->apiRequest("setWebhook", ["url" => $url]);
-        return $this->entityFromBody((string) $response->getBody(), "Entity\\Response");
+        return $this->entityFromBody((string) $response->getBody(), "\\Choccybiccy\\Telegram\\Entity\\Response");
     }
 
     /**
      * @param string $endpoint
      * @param array $data
      * @return \Psr\Http\Message\ResponseInterface
+     * @throws BadResponseException
      */
     protected function apiRequest($endpoint, array $data = [])
     {
         $botToken = "bot" . $this->authenticationToken;
-        return $this->post($this->apiUrl . $botToken . "/" . $endpoint, ["form_params" => $data]);
+        try {
+            return $this->post($this->apiUrl . $botToken . "/" . $endpoint, ["form_params" => $data]);
+        } catch(\GuzzleHttp\Exception\BadResponseException $e) {
+            $exception = new BadResponseException($e);
+            $exception->setResponse(
+                $this->entityFromBody($e->getResponse()->getBody(), "\\Choccybiccy\\Telegram\\Entity\\Response")
+            );
+            throw $exception;
+        }
     }
 
     /**
