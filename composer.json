@@ -1,6 +1,6 @@
 {
     "name": "choccybiccy/telegrambot",
-    "description": "Library for building telegram bots",
+    "description": "Library for building better Telegram bots",
     "type": "Library",
     "require": {
         "guzzlehttp/guzzle": "^6.0"
