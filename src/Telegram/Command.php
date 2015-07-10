@@ -27,13 +27,13 @@ abstract class Command
     public function __construct($trigger = null)
     {
 
-        if($trigger) {
+        if ($trigger) {
             $this->setTrigger($trigger);
         }
 
         $this->configure();
 
-        if(!$this->trigger) {
+        if (!$this->trigger) {
             throw new \LogicException("The command defined in \"".get_class($this)."\" cannot have an empty trigger");
         }
 
@@ -77,7 +77,7 @@ abstract class Command
      */
     private function validateTrigger($trigger)
     {
-        if(!preg_match('/^[\w\-]+$/', $trigger)) {
+        if (!preg_match('/^[\w\-]+$/', $trigger)) {
             throw new \InvalidArgumentException("Command trigger \"" . $trigger . "\" is invalid");
         }
     }

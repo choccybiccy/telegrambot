@@ -29,8 +29,10 @@ class Entity
      */
     public function populate(array $data, $replace = false)
     {
-        if($replace) $this->data = [];
-        foreach($data as $key => $value) {
+        if ($replace) {
+            $this->data = [];
+        }
+        foreach ($data as $key => $value) {
             $this->set($key, $value);
         }
         return $this;
@@ -45,7 +47,7 @@ class Entity
     {
         $this->data[$key] = $value;
         $entity = $this->mapToEntity($key, $value);
-        if(is_object($entity)) {
+        if (is_object($entity)) {
             $this->data[$key] = $entity;
         }
         return $this;
@@ -59,7 +61,7 @@ class Entity
      */
     public function get($key)
     {
-        if($this->exists($key)) {
+        if ($this->exists($key)) {
             return $this->data[$key];
         }
         return null;
@@ -71,7 +73,7 @@ class Entity
      */
     public function exists($key)
     {
-        if(array_key_exists($key, $this->data)) {
+        if (array_key_exists($key, $this->data)) {
             return true;
         }
         return false;
@@ -101,10 +103,10 @@ class Entity
     public function toArray()
     {
         $array = [];
-        foreach($this->data as $key => $value) {
-            if($value instanceof Entity) {
+        foreach ($this->data as $key => $value) {
+            if ($value instanceof Entity) {
                 $value = $value->toArray();
-            } elseif($value instanceof \DateTime) {
+            } elseif ($value instanceof \DateTime) {
                 $value = $value->getTimestamp();
             }
             $array[$key] = $value;

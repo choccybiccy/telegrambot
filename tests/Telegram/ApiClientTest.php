@@ -114,7 +114,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
 
         $method = $apiClient->expects($this->once())
             ->method("apiRequest");
-        if(count($params)) {
+        if (count($params)) {
             $method->with($endpoint, $params);
         } else {
             $method->with($endpoint);
@@ -335,7 +335,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
             ->willReturn($response);
 
         $expected = [];
-        foreach($data as $update) {
+        foreach ($data as $update) {
             $expected[] = new Update($update);
         }
         $this->assertEquals($expected, $apiClient->getUpdates(0, 5, 30));
@@ -372,7 +372,7 @@ class ApiClientTest extends \PHPUnit_Framework_TestCase
 
         try {
             $this->runProtectedMethod($apiClient, "apiRequest", ["test"]);
-        } catch(BadResponseException $e) {
+        } catch (BadResponseException $e) {
             $this->assertInstanceOf("Choccybiccy\\Telegram\\Entity\\Response", $e->getResponse());
             $this->assertEquals($data, $this->getProtectedProperty($e->getResponse(), "data"));
         }

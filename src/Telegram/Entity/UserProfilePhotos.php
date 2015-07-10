@@ -22,7 +22,7 @@ class UserProfilePhotos extends Entity
         {
             case "photos":
                 $return = [];
-                foreach($value as $photoSize) {
+                foreach ($value as $photoSize) {
                     $return[] = new PhotoSize($photoSize);
                 }
                 return $return;

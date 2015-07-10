@@ -110,16 +110,14 @@ class EntityTest extends \PHPUnit_Framework_TestCase
      */
     public function testMapToEntity()
     {
-        if(count($this->entityMaps)) {
-
+        if (count($this->entityMaps)) {
             $class = substr(get_class($this), 0, -4);
             $namespace = __NAMESPACE__ . "\\Entity";
 
             /** @var Entity $entity */
             $parentEntity = new $class;
 
-            foreach($this->entityMaps as $key => $entity) {
-
+            foreach ($this->entityMaps as $key => $entity) {
                 $entityToMap = $namespace . "\\" . $entity;
                 $mappedEntity = $parentEntity->mapToEntity($key, ["data" => "example"]);
                 $this->assertInstanceOf($entityToMap, $mappedEntity);

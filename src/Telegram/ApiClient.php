@@ -72,8 +72,13 @@ class ApiClient extends Client
      * @param ReplyKeyboardMarkup|ReplyKeyboardHide|ForceReply|null $replyMarkup
      * @return Message
      */
-    public function sendMessage($chatId, $text, $disableWebPagePreview = null, $replyToMessageId = null, $replyMarkup = null)
-    {
+    public function sendMessage(
+        $chatId,
+        $text,
+        $disableWebPagePreview = null,
+        $replyToMessageId = null,
+        $replyMarkup = null
+    ) {
         $response = $this->apiRequest("sendMessage", [
             "chat_id" => $chatId,
             "text" => $text,
@@ -257,7 +262,7 @@ class ApiClient extends Client
         ]);
         $updates = $this->decodeJson($response->getBody());
         $return = [];
-        foreach($updates as $update) {
+        foreach ($updates as $update) {
             $return[] = new Update($update);
         }
         return $return;
@@ -284,7 +289,7 @@ class ApiClient extends Client
         $botToken = "bot" . $this->authenticationToken;
         try {
             return $this->post($this->apiUrl . $botToken . "/" . $endpoint, ["form_params" => $data]);
-        } catch(\GuzzleHttp\Exception\BadResponseException $e) {
+        } catch (\GuzzleHttp\Exception\BadResponseException $e) {
             $exception = new BadResponseException($e);
             $exception->setResponse(
                 $this->entityFromBody($e->getResponse()->getBody(), new Response())

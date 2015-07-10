@@ -30,7 +30,7 @@ class Message extends Entity
                 return new User($value);
                 break;
             case "chat":
-                if(array_key_exists("title", $value)) {
+                if (array_key_exists("title", $value)) {
                     return new GroupChat($value);
                 }
                 return new User($value);
@@ -59,7 +59,7 @@ class Message extends Entity
             case "photo":
             case "new_chat_photo":
                 $return = [];
-                foreach($value as $photoSize) {
+                foreach ($value as $photoSize) {
                     $return[] = new PhotoSize($photoSize);
                 }
                 return $return;
