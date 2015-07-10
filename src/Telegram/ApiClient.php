@@ -129,7 +129,7 @@ class ApiClient extends Client
      */
     public function sendAudio($chatId, $audio, $replyToMessageId = null, $replyMarkup = null)
     {
-        $response = $this->apiRequest("sendPhoto", [
+        $response = $this->apiRequest("sendAudio", [
             "chat_id" => $chatId,
             "audio" => (string) $audio,
             "reply_to_message_id" => $replyToMessageId,
@@ -147,7 +147,7 @@ class ApiClient extends Client
      */
     public function sendDocument($chatId, $document, $replyToMessageId = null, $replyMarkup = null)
     {
-        $response = $this->apiRequest("sendPhoto", [
+        $response = $this->apiRequest("sendDocument", [
             "chat_id" => $chatId,
             "document" => (string) $document,
             "reply_to_message_id" => $replyToMessageId,
@@ -165,7 +165,7 @@ class ApiClient extends Client
      */
     public function sendSticker($chatId, $sticker, $replyToMessageId = null, $replyMarkup = null)
     {
-        $response = $this->apiRequest("sendPhoto", [
+        $response = $this->apiRequest("sendSticker", [
             "chat_id" => $chatId,
             "sticker" => (string) $sticker,
             "reply_to_message_id" => $replyToMessageId,
@@ -183,7 +183,7 @@ class ApiClient extends Client
      */
     public function sendVideo($chatId, $video, $replyToMessageId = null, $replyMarkup = null)
     {
-        $response = $this->apiRequest("sendPhoto", [
+        $response = $this->apiRequest("sendVideo", [
             "chat_id" => $chatId,
             "video" => (string) $video,
             "reply_to_message_id" => $replyToMessageId,
