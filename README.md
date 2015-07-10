@@ -4,7 +4,7 @@
 [![Latest Unstable Version](https://poser.pugx.org/choccybiccy/telegrambot/v/unstable)](//packagist.org/packages/choccybiccy/telegrambot)
 [![License](https://poser.pugx.org/choccybiccy/telegrambot/license.svg)](https://packagist.org/packages/choccybiccy/telegrambot)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/choccybiccy/telegrambot/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/choccybiccy/telegrambot/?branch=master)
-
+[![SensioLabsInsight](https://insight.sensiolabs.com/projects/8624bb0a-8104-4e19-a6ef-e341d827c63b/mini.png)](https://insight.sensiolabs.com/projects/8624bb0a-8104-4e19-a6ef-e341d827c63b)
 
 Build better Telegram bots.
 
