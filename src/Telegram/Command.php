@@ -3,6 +3,7 @@
 namespace Choccybiccy\Telegram;
 
 use Choccybiccy\Telegram\Entity\Message;
+use Choccybiccy\Telegram\Entity\ReplyKeyboardMarkup;
 
 /**
  * Class Command
@@ -20,6 +21,21 @@ abstract class Command
      * @var ApiClient
      */
     protected $apiClient;
+
+    /**
+     * @var bool
+     */
+    protected $isReply = false;
+
+    /**
+     * @var string
+     */
+    protected $originalArgument;
+
+    /**
+     * @var Message
+     */
+    protected $originalMessage;
 
     /**
      * @param string $trigger
@@ -122,5 +138,85 @@ abstract class Command
     {
         $this->setApiClient($apiClient);
         $this->execute($argument, $message);
+    }
+
+    /**
+     * Run the command with the users reply
+     *
+     * @param string $reply
+     * @param Message $message
+     * @param string $originalArgument
+     * @param Message $originalMessage
+     * @param ApiClient $apiClient
+     */
+    public function runReply(
+        $reply,
+        Message $message,
+        $originalArgument,
+        Message $originalMessage,
+        ApiClient $apiClient
+    ) {
+        $this->setApiClient($apiClient);
+        $this->isReply = true;
+        $this->originalArgument = $originalArgument;
+        $this->originalMessage = $originalMessage;
+        $this->execute($reply, $message);
+    }
+
+    /**
+     * Is the user replying to a reply prompt?
+     *
+     * @return bool
+     */
+    protected function isReply()
+    {
+        return (bool) $this->isReply;
+    }
+
+    /**
+     * Get the original argument before the reply prompt
+     *
+     * @return string
+     */
+    protected function getOriginalArgument()
+    {
+        return $this->originalArgument;
+    }
+
+    /**
+     * Get the original message before the reply prompt
+     *
+     * @return Message
+     */
+    protected function getOriginalMessage()
+    {
+        return $this->originalMessage;
+    }
+
+    /**
+     * Prompt the sender for a reply
+     *
+     * @param string $text
+     * @param Message $message
+     * @param ReplyKeyboardMarkup $replyKeyboardMarkup
+     * @param bool $disableWebPagePreview
+     * @return Message
+     */
+    protected function promptReply(
+        $text,
+        Message $message,
+        ReplyKeyboardMarkup $replyKeyboardMarkup,
+        $disableWebPagePreview = false
+    ) {
+
+        $text = $text . " [" . trim(preg_replace("/\s\s+/", " ", ($message->text))) . "]";
+        return $this->getApiClient()
+            ->sendMessage(
+                $message->chat->id,
+                $text,
+                $disableWebPagePreview,
+                $message->message_id,
+                $replyKeyboardMarkup
+            );
     }
 }

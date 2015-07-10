@@ -49,11 +49,18 @@ class CommandHandler
 
         /** @var Entity\Message $message */
         $message = $update->message;
-        $text = $message->text;
+        $text = trim($message->text);
+        $original = $message->reply_to_message;
 
-        if (substr($text, 0, 1) == "/") {
+        if($original) {
             foreach ($this->commands as $command) {
-                if (preg_match('/^\/' . $command->getTrigger() . '\s?(.*)$/', $text, $matches)) {
+                if (preg_match('/\[\/' . $command->getTrigger() . '(| .*)\]$/', $original->text, $matches)) {
+                    $command->runReply($text, $message, trim($matches[1]), $original, $this->apiClient);
+                }
+            }
+        } elseif (substr($text, 0, 1) == "/") {
+            foreach ($this->commands as $command) {
+                if (preg_match('/^\/' . $command->getTrigger() . '(| .*)$/', $text, $matches)) {
                     $command->run(trim($matches[1]), $message, $this->apiClient);
                 }
             }
