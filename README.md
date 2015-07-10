@@ -3,7 +3,8 @@
 [![Latest Stable Version](https://poser.pugx.org/choccybiccy/telegrambot/v/stable.svg)](https://packagist.org/packages/choccybiccy/telegrambot) 
 [![Latest Unstable Version](https://poser.pugx.org/choccybiccy/telegrambot/v/unstable)](//packagist.org/packages/choccybiccy/telegrambot)
 [![License](https://poser.pugx.org/choccybiccy/telegrambot/license.svg)](https://packagist.org/packages/choccybiccy/telegrambot)
-[![Total Downloads](https://poser.pugx.org/choccybiccy/telegrambot/downloads)](https://packagist.org/packages/choccybiccy/telegrambot)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/choccybiccy/telegrambot/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/choccybiccy/telegrambot/?branch=master)
+
 
 Build better Telegram bots.
 
