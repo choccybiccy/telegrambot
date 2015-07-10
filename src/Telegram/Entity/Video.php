@@ -22,7 +22,6 @@ class Video extends Entity
         {
             case "thumb":
                 return new PhotoSize($value);
-                break;
         }
     }
 }

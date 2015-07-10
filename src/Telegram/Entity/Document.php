@@ -22,7 +22,6 @@ class Document extends Entity
         {
             case "thumb":
                 return new PhotoSize($value);
-                break;
         }
     }
 }

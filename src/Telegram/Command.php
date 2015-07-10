@@ -27,7 +27,7 @@ abstract class Command
     public function __construct($trigger = null)
     {
 
-        if ($trigger) {
+        if ($trigger !== null) {
             $this->setTrigger($trigger);
         }
 

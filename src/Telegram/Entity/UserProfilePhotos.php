@@ -26,7 +26,6 @@ class UserProfilePhotos extends Entity
                     $return[] = new PhotoSize($photoSize);
                 }
                 return $return;
-                break;
         }
     }
 }

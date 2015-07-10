@@ -22,40 +22,30 @@ class Message extends Entity
         {
             case "date":
                 return new \DateTime(date("Y-m-d H:i:s", $value));
-                break;
             case "from":
             case "forward_from":
             case "new_chat_participant":
             case "left_chat_participant":
                 return new User($value);
-                break;
             case "chat":
                 if (array_key_exists("title", $value)) {
                     return new GroupChat($value);
                 }
                 return new User($value);
-                break;
             case "reply_to_message":
                 return new Message($value);
-                break;
             case "audio":
                 return new Audio($value);
-                break;
             case "document":
                 return new Document($value);
-                break;
             case "sticker":
                 return new Sticker($value);
-                break;
             case "video":
                 return new Video($value);
-                break;
             case "contact":
                 return new Contact($value);
-                break;
             case "location":
                 return new Location($value);
-                break;
             case "photo":
             case "new_chat_photo":
                 $return = [];
@@ -63,7 +53,6 @@ class Message extends Entity
                     $return[] = new PhotoSize($photoSize);
                 }
                 return $return;
-                break;
         }
     }
 }

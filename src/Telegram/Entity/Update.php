@@ -21,7 +21,6 @@ class Update extends Entity
         switch ($key) {
             case "message":
                 return new Message($value);
-                break;
         }
     }
 }
