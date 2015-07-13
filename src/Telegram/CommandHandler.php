@@ -19,7 +19,7 @@ class CommandHandler
     /**
      * @var Command[]
      */
-    protected $commands;
+    protected $commands = [];
 
     /**
      * Constructor
