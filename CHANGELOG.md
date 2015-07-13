@@ -4,6 +4,10 @@ This project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased][unreleased]
 
+## 0.2.1 - 2015-07-13
+### Fixed
+* Start commands collection in handler as an array
+
 ## 0.2.0 - 2015-07-10
 ### Added
 * More unit tests
